@@ -8,9 +8,11 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
-alert(
-  `Please allow use location and wait for the map to load, it may take a little bit of time.\nWhen the map loads, click on it and choose the type of your workout, fill in the blanks and hit enter.\nThis app uses localStorage to store the workouts`
-);
+if (localStorage.getItem('workout') === null) {
+  alert(
+    `Please allow use location and wait for the map to load, it may take a little bit of time.\nWhen the map loads, click on it and choose the type of your workout, fill in the blanks and hit enter.\nThis app uses localStorage to store the workouts`
+  );
+}
 
 class Workout {
   date = new Date();
@@ -78,7 +80,7 @@ class App {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
-          alert('enable geo');
+          alert('enable location please');
         }
       );
     }
